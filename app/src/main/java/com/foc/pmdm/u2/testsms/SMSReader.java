@@ -14,8 +14,11 @@ import android.widget.Toast;
 public class SMSReader extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        //Creamos objeto Bundle y recogemos el Intent y sus extras.
         Bundle bundle=intent.getExtras();
+
         Object []pdusObje=(Object[]) bundle.get("pdus");
+        if (pdusObje == null) System.out.println("Objeto "+pdusObje+" nulo!.");
         for(int i=0;i<pdusObje.length;i++)
         {
             SmsMessage mensaje=SmsMessage.createFromPdu((byte[])pdusObje[i]);
